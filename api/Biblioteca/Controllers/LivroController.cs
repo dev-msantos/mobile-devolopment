@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -9,19 +8,25 @@ using Microsoft.AspNetCore.Http;
 using Biblioteca.Dtos;
 using Biblioteca.DAOs;
 using Biblioteca.Models;
+using Microsoft.Extensions.Configuration;
+using System.Net.Mime;
 
 namespace Biblioteca.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
+    [Consumes(MediaTypeNames.Application.Json)]
     public class LivroController : ControllerBase
     {
         private readonly ILogger<LivroController> _logger;
-        private LivroDAO LivroDAO = new LivroDAO();
+        private readonly IConfiguration _configuration;
+        private LivroDAO LivroDAO = null;
 
-        public LivroController(ILogger<LivroController> logger)
+        public LivroController(ILogger<LivroController> logger, IConfiguration configuration)
         {
             _logger = logger;
+            _configuration = configuration;
+            LivroDAO = new LivroDAO(_configuration.GetSection("ConnectionStrings").GetSection("Default").Value);
         }
 
         [HttpPost]
@@ -36,13 +41,16 @@ namespace Biblioteca.Controllers
             {
                 Livro livro = await LivroDAO.NovoLivro(form);
                 LivroDto livroDto = new LivroDto(livro);
-
-                return Created("", new GenericResponseDto("Livro criado com sucesso!", errorList, livroDto));
+                
+                var uri = new UriBuilder();
+                var path = $"{uri.Scheme}://{uri.Uri.Host}:5000";
+                
+                return Created($"{path}/api/livro/{livro.Id}", new GenericResponseDto("Livro criado com sucesso!", errorList, livroDto));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 errorList.Add("Verifique os dados enviados");
-                return BadRequest(new GenericResponseDto("Falha ao tentar criar o livro", errorList, form));
+                return BadRequest(new GenericResponseDto("Falha ao tentar criar o livro", errorList, ex));
             }
         }
 
@@ -50,7 +58,7 @@ namespace Biblioteca.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public async Task<IActionResult> GetById([FromQuery] int id)
+        public async Task<IActionResult> GetById(int id)
         {
             List<string> errorList = new List<string>();
 
@@ -61,14 +69,14 @@ namespace Biblioteca.Controllers
 
                 return Ok(new GenericResponseDto("Livro recuperado com sucesso!", errorList, livroDto));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 errorList.Add("Verifique os dados enviados");
-                return BadRequest(new GenericResponseDto($"Falha ao tentar consultar o livro id = {id}", errorList, id));
+                return BadRequest(new GenericResponseDto($"Falha ao tentar consultar o livro id = {id}", errorList, ex));
             }
         }
 
-        [HttpGet("{id}")]
+        [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -83,10 +91,10 @@ namespace Biblioteca.Controllers
 
                 return Ok(new GenericResponseDto($"Livros recuperados com sucesso! ({livrosDto.Livros.Count})", errorList, livrosDto));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 errorList.Add("Verifique os dados enviados");
-                return BadRequest(new GenericResponseDto($"Falha ao tentar consultar todos os livros", errorList, new List<string>()));
+                return BadRequest(new GenericResponseDto($"Falha ao tentar consultar todos os livros", errorList, ex));
             }
         }
 
@@ -105,10 +113,10 @@ namespace Biblioteca.Controllers
 
                 return Ok(new GenericResponseDto("Livro atualizado com sucesso!", errorList, livroDto));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 errorList.Add("Verifique os dados enviados");
-                return BadRequest(new GenericResponseDto($"Falha ao tentar atualizar o livro id = {form.Livro.Id}", errorList, form));
+                return BadRequest(new GenericResponseDto($"Falha ao tentar atualizar o livro id = {form.Livro.Id.ToString()}", errorList, ex));
             }
         }
 
@@ -116,7 +124,7 @@ namespace Biblioteca.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public async Task<IActionResult> DeleteBook([FromQuery] string id)
+        public async Task<IActionResult> DeleteBook(int id)
         {
             List<string> errorList = new List<string>();
 
@@ -125,10 +133,10 @@ namespace Biblioteca.Controllers
                 bool deleted = await LivroDAO.DeleteBook(id);
                 return Ok(new GenericResponseDto("Livro excluido com sucesso!", errorList, deleted));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 errorList.Add("Verifique os dados enviados");
-                return BadRequest(new GenericResponseDto($"Falha ao tentar excluir o livro id = {id}", errorList, id));
+                return BadRequest(new GenericResponseDto($"Falha ao tentar excluir o livro id = {id}", errorList, ex));
             }
         }
     }

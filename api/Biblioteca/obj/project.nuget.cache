@@ -1,10 +1,18 @@
 {
   "version": 2,
-  "dgSpecHash": "HmZ8C6XbxP3U7D0bi6rVIy2wUX8ddCASoNGf53DWvowoX/uLh4Oug47EqSRNc7BjQXtZapagHsHCCimi/itkug==",
+  "dgSpecHash": "EVixtuE+9awx9mDbB71x40I1RIsyibvJx6ewpdXikGh48kMxdBij79VCJ4qA/LaVc81Sy6KmGUWRfeUwoiPzlw==",
   "success": true,
   "projectFilePath": "/home/michael/Documents/fiap/MOBILE/trabalho/mobile-devolopment/api/Biblioteca/Biblioteca.csproj",
   "expectedPackageFiles": [
     "/home/michael/.nuget/packages/dapper/2.0.90/dapper.2.0.90.nupkg.sha512",
+    "/home/michael/.nuget/packages/microsoft.extensions.apidescription.server/3.0.0/microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "/home/michael/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
+    "/home/michael/.nuget/packages/mysqlconnector/2.1.10/mysqlconnector.2.1.10.nupkg.sha512",
+    "/home/michael/.nuget/packages/swashbuckle.aspnetcore/5.6.3/swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
+    "/home/michael/.nuget/packages/swashbuckle.aspnetcore.swagger/5.6.3/swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
+    "/home/michael/.nuget/packages/swashbuckle.aspnetcore.swaggergen/5.6.3/swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
+    "/home/michael/.nuget/packages/swashbuckle.aspnetcore.swaggerui/5.6.3/swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512",
+    "/home/michael/.nuget/packages/system.diagnostics.diagnosticsource/5.0.1/system.diagnostics.diagnosticsource.5.0.1.nupkg.sha512",
     "/home/michael/.nuget/packages/system.reflection.emit.lightweight/4.7.0/system.reflection.emit.lightweight.4.7.0.nupkg.sha512"
   ],
   "logs": []
