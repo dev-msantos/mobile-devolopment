@@ -1,0 +1,5 @@
+/home/michael/Documents/fiap/MOBILE/trabalho/mobile-devolopment/api/Biblioteca/obj/Debug/netcoreapp3.1/Biblioteca.csprojAssemblyReference.cache
+/home/michael/Documents/fiap/MOBILE/trabalho/mobile-devolopment/api/Biblioteca/obj/Debug/netcoreapp3.1/Biblioteca.AssemblyInfoInputs.cache
+/home/michael/Documents/fiap/MOBILE/trabalho/mobile-devolopment/api/Biblioteca/obj/Debug/netcoreapp3.1/Biblioteca.AssemblyInfo.cs
+/home/michael/Documents/fiap/MOBILE/trabalho/mobile-devolopment/api/Biblioteca/obj/Debug/netcoreapp3.1/Biblioteca.csproj.CoreCompileInputs.cache
+/home/michael/Documents/fiap/MOBILE/trabalho/mobile-devolopment/api/Biblioteca/obj/Debug/netcoreapp3.1/Biblioteca.MvcApplicationPartsAssemblyInfo.cache
