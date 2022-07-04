@@ -4,3 +4,6 @@ Solução é composta por API que esta hospedada em um VM na Azure que consulta 
 
 # Diagrama
 ![alt text](./imgs/diagrama.png)
+
+# Prototipação
+![alt text](./imgs/prototipacao.png)
