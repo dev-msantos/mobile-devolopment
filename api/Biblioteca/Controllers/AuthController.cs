@@ -9,7 +9,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Http;
 using Biblioteca.Forms;
 using Biblioteca.Dtos;
-using Biblioteca.Models;
 
 namespace Biblioteca.Controllers
 {
@@ -19,46 +18,45 @@ namespace Biblioteca.Controllers
     public class AuthController : ControllerBase
     {
         private readonly ILogger<AuthController> _logger;
-        private readonly IConfiguration _configuration;
-        private AuthDAO AuthDAO = null;
+        private readonly IConfiguration _config;
+        private AuthDAO _authDAO = null;
 
-        public AuthController(ILogger<AuthController> logger, IConfiguration configuration)
+        public AuthController(ILogger<AuthController> logger, IConfiguration config)
         {
             _logger = logger;
-            _configuration = configuration;
-            AuthDAO = new AuthDAO(_configuration.GetSection("ConnectionStrings").GetSection("Default").Value);
+            _config = config;
+            _authDAO = new AuthDAO(_config.GetSection("ConnectionStrings").GetSection("Default").Value);
         }
 
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> Login([FromBody] LoginForm form)
         {
-            List<string> errorList = new List<string>();
+            var errors = new List<string>();
+
+            if(!ModelState.IsValid)
+                return BadRequest(new GenericResponseDto("Verifique os dados e tente novamente!", errors, ModelState));
 
             try
             {
-                bool existsAccount = await AuthDAO.ExistsAccount(form.Username);
-
-                if (existsAccount)
+                if (await _authDAO.ExistsAccount(form.Username))
                 {
-                    Account account = await AuthDAO.FindAccount(form.Username);
-                    AccountDto accountDto = new AccountDto(account);
-
-                    if (account.Password.Equals(form.Password))
-                    {
-                        return Ok(new GenericResponseDto("O login foi um sucesso!", errorList, accountDto));
-                    }
+                    var account = await _authDAO.FindAccount(form.Username);
+                    var accountDto = new AccountDto(account);
+                    
+                    if (account.Password.Equals(form.Password))                    
+                        return Ok(new GenericResponseDto("O login foi um sucesso!", errors, accountDto));
                 }
                 
-                errorList.Add("Favor verificar os dados.");
-                return BadRequest(new GenericResponseDto("Usuário ou senha inválido.", errorList, form));
+                errors.Add("Favor verificar os dados.");
+                return BadRequest(new GenericResponseDto("Usuário ou senha inválido.", errors, form));
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                errorList.Add("Verifique os dados enviados");
-                return BadRequest(new GenericResponseDto("Falha ao tentar logar.", errorList, ex));
+                errors.Add("Verifique os dados enviados");
+                return BadRequest(new GenericResponseDto("Falha ao tentar logar.", errors, e.Message));
             }
         }
 
@@ -68,38 +66,39 @@ namespace Biblioteca.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> CreateAccount([FromBody] CreateAccountForm form)
         {
-            List<string> errorList = new List<string>();
+            var errors = new List<string>();
+
+            if(!ModelState.IsValid)
+                return BadRequest(new GenericResponseDto("Verifique os dados e tente novamente!", errors, ModelState));
 
             try
             {
-                bool existsAccount = await AuthDAO.ExistsAccount(form.Username);
+                bool existsAccount = await _authDAO.ExistsAccount(form.Username);
 
                 if (!existsAccount)
                 {
-                    if (form.Password.Equals(form.Password2))
+                    if (form.Password.Equals(form.ConfirmPassword))
                     {
-                        Account account = await AuthDAO.CreateAccount(form);
-                        AccountDto accountDto = new AccountDto(account);
+                        var account = await _authDAO.CreateAccount(form);
+                        var accountDto = new AccountDto(account);
                         var uri = new UriBuilder();
                         var path = $"{uri.Scheme}://{uri.Uri.Host}:5000";
-                        return Created($"{path}/api/account/{accountDto.Username}", new GenericResponseDto("Conta criada com sucesso!", errorList, accountDto));
+                        return Created($"{path}/api/account/{accountDto.Username}", new GenericResponseDto("Conta criada com sucesso!", errors, accountDto));
                     }
-                    else
-                    {
-                        errorList.Add("Favor verificar os dados.");
-                        return BadRequest(new GenericResponseDto("Senhas não conferem.", errorList, form));
-                    }
-                } else
-                {
-                    errorList.Add("Favor verificar os dados.");
-                    return BadRequest(new GenericResponseDto($"Nome de usuário {form.Username} já existe.", errorList, form));
+                    
+                    errors.Add("Favor verificar os dados.");
+                    return BadRequest(new GenericResponseDto("Senhas não conferem.", errors, form));
+                    
                 }
+                
+                errors.Add("Favor verificar os dados.");
+                return BadRequest(new GenericResponseDto($"Nome de usuário {form.Username} já existe.", errors, form));
 
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                errorList.Add("Verifique os dados enviados");
-                return BadRequest(new GenericResponseDto("Falha ao tentar criar nova conta", errorList, ex));
+                errors.Add("Verifique os dados enviados");
+                return BadRequest(new GenericResponseDto("Falha ao tentar criar nova conta", errors, e.Message));
             }
         }
 

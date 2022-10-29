@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -6,8 +5,8 @@ using Biblioteca.Forms;
 using Biblioteca.Models;
 using Biblioteca.Sql;
 using Dapper;
-using Microsoft.Extensions.Options;
 using MySqlConnector;
+using System;
 
 namespace Biblioteca.DAOs
 {
@@ -20,41 +19,35 @@ namespace Biblioteca.DAOs
         }
         public async Task<Livro> NovoLivro(NovoLivroForm form)
         {
-            using (var connection = new MySqlConnection(ConnectionString))
+            using (var conn = new MySqlConnection(ConnectionString))
             {
-                connection.Open();
+                conn.Open();
 
                 var parameters = new
                 {
+                    Id = Guid.NewGuid().ToString(),
                     Autor = form.Autor,
                     Titulo = form.Titulo,
                     Ano = form.Ano
                 };
 
-                await connection.ExecuteAsync(LivroSql.INSERT_LIVRO(), parameters);
-                Livro livro = await connection.QueryFirstOrDefaultAsync<Livro>(LivroSql.GET_LAST());
-                return livro;
+                var sql = LivroSql.INSERT_LIVRO + LivroSql.GET_BY_ID;
+                return await conn.QueryFirstAsync<Livro>(sql, parameters);
             }
         }
-        public async Task<Livro> GetById(int id)
+        public async Task<Livro> GetById(string id)
         {
-            using (var connection = new MySqlConnection(ConnectionString))
+            using (var conn = new MySqlConnection(ConnectionString))
             {
-                connection.Open();
-
-                var parameters = new
-                {
-                    Id = id
-                };
-
-                return await connection.QueryFirstOrDefaultAsync<Livro>(LivroSql.GET_BY_ID(), parameters);
+                conn.Open();
+                return await conn.QueryFirstOrDefaultAsync<Livro>(LivroSql.GET_BY_ID, new { Id = id });
             }
         }
         public async Task<Livro> UpdateBook(UpdateBookForm form)
         {
-            using (var connection = new MySqlConnection(ConnectionString))
+            using (var conn = new MySqlConnection(ConnectionString))
             {
-                connection.Open();
+                conn.Open();
 
                 var parameters = new
                 {
@@ -64,31 +57,26 @@ namespace Biblioteca.DAOs
                     Ano = form.Livro.Ano
                 };
 
-                await connection.ExecuteAsync(LivroSql.UPDATE_BOOK(), parameters);
-                return await connection.QueryFirstAsync<Livro>(LivroSql.GET_BY_ID(), parameters);
+                await conn.ExecuteAsync(LivroSql.UPDATE_BOOK, parameters);
+                return await conn.QueryFirstAsync<Livro>(LivroSql.GET_BY_ID, parameters);
             }
         }
-        public async Task<bool> DeleteBook(int id)
+        public async Task<bool> DeleteBook(string id)
         {
-            using (var connection = new MySqlConnection(ConnectionString))
+            using (var conn = new MySqlConnection(ConnectionString))
             {
-                connection.Open();
+                conn.Open();
+                var count = await conn.ExecuteAsync(LivroSql.DELETE_BY_ID, new { Id = id });
 
-                var parameters = new
-                {
-                    Id = id
-                };
-
-                int count = await connection.ExecuteAsync(LivroSql.DELETE_BY_ID(), parameters);
                 return count > 0 ? true : false;
             }
         }
         public async Task<List<Livro>> GetAll()
         {
-            using (var connection = new MySqlConnection(ConnectionString))
+            using (var conn = new MySqlConnection(ConnectionString))
             {
-                connection.Open();
-                IEnumerable<Livro> livros = await connection.QueryAsync<Livro>(LivroSql.GET_ALL());
+                conn.Open();
+                var livros = await conn.QueryAsync<Livro>(LivroSql.GET_ALL);
                 return livros.ToList();
             }
         }
