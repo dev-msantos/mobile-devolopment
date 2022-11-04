@@ -73,7 +73,7 @@ namespace Biblioteca.Controllers
 
             try
             {
-                bool existsAccount = await _authDAO.ExistsAccount(form.Username);
+                var existsAccount = await _authDAO.ExistsAccount(form.Username);
 
                 if (!existsAccount)
                 {

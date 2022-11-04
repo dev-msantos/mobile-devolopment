@@ -28,8 +28,7 @@ namespace Biblioteca
         {
             services.Configure<ConnectionStrings>(Configuration.GetSection("ConnectionStrings"));
 
-            services.AddSwaggerGen();
-            
+            services.AddSwaggerGen();            
             services.AddControllers();
         }
 
@@ -56,10 +55,8 @@ namespace Biblioteca
                 c.RoutePrefix = string.Empty;
             });
 
-            //app.UseHttpsRedirection();
-
+            app.UseHttpsRedirection();
             app.UseRouting();
-
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
