@@ -11,12 +11,7 @@ namespace Biblioteca.DAOs
     public class AuthDAO
     {
         private string ConnectionString;
-
-        public AuthDAO(string connectionString)
-        {
-            ConnectionString = connectionString;
-        }
-
+        public AuthDAO(string connectionString) => ConnectionString = connectionString;
         public async Task<Account> CreateAccount(CreateAccountForm form)
         {
             using (var conn = new MySqlConnection(ConnectionString))
@@ -41,12 +36,7 @@ namespace Biblioteca.DAOs
             {
                 conn.Open();
 
-                var parameters = new
-                {
-                    Username = username
-                };
-
-                return await conn.QueryFirstOrDefaultAsync<Account>(AccountSql.FIND_ACCOUNT, parameters);
+                return await conn.QueryFirstOrDefaultAsync<Account>(AccountSql.FIND_ACCOUNT, new { Username = username });
             }
         }
         public async Task<bool> ExistsAccount(string username)
@@ -55,12 +45,7 @@ namespace Biblioteca.DAOs
             {
                 conn.Open();
 
-                var parameters = new
-                {
-                    Username = username
-                };
-
-                int result = await conn.QueryFirstOrDefaultAsync<int>(AccountSql.EXISTS_USERNAME, parameters);
+                int result = await conn.QueryFirstOrDefaultAsync<int>(AccountSql.EXISTS_USERNAME, new { Username = username });
                 return result.Equals(1) ? true : false;
             }
         }

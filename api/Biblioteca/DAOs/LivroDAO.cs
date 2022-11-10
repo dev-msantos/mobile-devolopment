@@ -13,10 +13,7 @@ namespace Biblioteca.DAOs
     public class LivroDAO
     {
         private string ConnectionString;
-        public LivroDAO(string connectionString)
-        {
-            ConnectionString = connectionString;
-        }
+        public LivroDAO(string connectionString) => ConnectionString = connectionString;        
         public async Task<Livro> NovoLivro(NovoLivroForm form)
         {
             using (var conn = new MySqlConnection(ConnectionString))

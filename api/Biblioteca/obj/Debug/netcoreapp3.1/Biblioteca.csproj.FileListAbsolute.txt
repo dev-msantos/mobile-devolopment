@@ -1,8 +1,3 @@
-/home/michael/Documents/fiap/MOBILE/trabalho/mobile-devolopment/api/Biblioteca/obj/Debug/netcoreapp3.1/Biblioteca.csprojAssemblyReference.cache
-/home/michael/Documents/fiap/MOBILE/trabalho/mobile-devolopment/api/Biblioteca/obj/Debug/netcoreapp3.1/Biblioteca.AssemblyInfoInputs.cache
-/home/michael/Documents/fiap/MOBILE/trabalho/mobile-devolopment/api/Biblioteca/obj/Debug/netcoreapp3.1/Biblioteca.AssemblyInfo.cs
-/home/michael/Documents/fiap/MOBILE/trabalho/mobile-devolopment/api/Biblioteca/obj/Debug/netcoreapp3.1/Biblioteca.csproj.CoreCompileInputs.cache
-/home/michael/Documents/fiap/MOBILE/trabalho/mobile-devolopment/api/Biblioteca/obj/Debug/netcoreapp3.1/Biblioteca.MvcApplicationPartsAssemblyInfo.cache
 /home/michael/Documents/fiap/MOBILE/trabalho/mobile-devolopment/api/Biblioteca/bin/Debug/netcoreapp3.1/appsettings.Development.json
 /home/michael/Documents/fiap/MOBILE/trabalho/mobile-devolopment/api/Biblioteca/bin/Debug/netcoreapp3.1/appsettings.json
 /home/michael/Documents/fiap/MOBILE/trabalho/mobile-devolopment/api/Biblioteca/bin/Debug/netcoreapp3.1/Properties/launchSettings.json
@@ -13,8 +8,18 @@
 /home/michael/Documents/fiap/MOBILE/trabalho/mobile-devolopment/api/Biblioteca/bin/Debug/netcoreapp3.1/Biblioteca.dll
 /home/michael/Documents/fiap/MOBILE/trabalho/mobile-devolopment/api/Biblioteca/bin/Debug/netcoreapp3.1/Biblioteca.pdb
 /home/michael/Documents/fiap/MOBILE/trabalho/mobile-devolopment/api/Biblioteca/bin/Debug/netcoreapp3.1/Dapper.dll
+/home/michael/Documents/fiap/MOBILE/trabalho/mobile-devolopment/api/Biblioteca/bin/Debug/netcoreapp3.1/Microsoft.OpenApi.dll
 /home/michael/Documents/fiap/MOBILE/trabalho/mobile-devolopment/api/Biblioteca/bin/Debug/netcoreapp3.1/MySqlConnector.dll
+/home/michael/Documents/fiap/MOBILE/trabalho/mobile-devolopment/api/Biblioteca/bin/Debug/netcoreapp3.1/Swashbuckle.AspNetCore.Swagger.dll
+/home/michael/Documents/fiap/MOBILE/trabalho/mobile-devolopment/api/Biblioteca/bin/Debug/netcoreapp3.1/Swashbuckle.AspNetCore.SwaggerGen.dll
+/home/michael/Documents/fiap/MOBILE/trabalho/mobile-devolopment/api/Biblioteca/bin/Debug/netcoreapp3.1/Swashbuckle.AspNetCore.SwaggerUI.dll
 /home/michael/Documents/fiap/MOBILE/trabalho/mobile-devolopment/api/Biblioteca/bin/Debug/netcoreapp3.1/System.Diagnostics.DiagnosticSource.dll
+/home/michael/Documents/fiap/MOBILE/trabalho/mobile-devolopment/api/Biblioteca/obj/Debug/netcoreapp3.1/Biblioteca.csprojAssemblyReference.cache
+/home/michael/Documents/fiap/MOBILE/trabalho/mobile-devolopment/api/Biblioteca/obj/Debug/netcoreapp3.1/Biblioteca.AssemblyInfoInputs.cache
+/home/michael/Documents/fiap/MOBILE/trabalho/mobile-devolopment/api/Biblioteca/obj/Debug/netcoreapp3.1/Biblioteca.AssemblyInfo.cs
+/home/michael/Documents/fiap/MOBILE/trabalho/mobile-devolopment/api/Biblioteca/obj/Debug/netcoreapp3.1/Biblioteca.csproj.CoreCompileInputs.cache
+/home/michael/Documents/fiap/MOBILE/trabalho/mobile-devolopment/api/Biblioteca/obj/Debug/netcoreapp3.1/Biblioteca.MvcApplicationPartsAssemblyInfo.cs
+/home/michael/Documents/fiap/MOBILE/trabalho/mobile-devolopment/api/Biblioteca/obj/Debug/netcoreapp3.1/Biblioteca.MvcApplicationPartsAssemblyInfo.cache
 /home/michael/Documents/fiap/MOBILE/trabalho/mobile-devolopment/api/Biblioteca/obj/Debug/netcoreapp3.1/Biblioteca.RazorTargetAssemblyInfo.cache
 /home/michael/Documents/fiap/MOBILE/trabalho/mobile-devolopment/api/Biblioteca/obj/Debug/netcoreapp3.1/Biblioteca.csproj.CopyComplete
 /home/michael/Documents/fiap/MOBILE/trabalho/mobile-devolopment/api/Biblioteca/obj/Debug/netcoreapp3.1/staticwebassets/Biblioteca.StaticWebAssets.Manifest.cache
@@ -22,8 +27,3 @@
 /home/michael/Documents/fiap/MOBILE/trabalho/mobile-devolopment/api/Biblioteca/obj/Debug/netcoreapp3.1/Biblioteca.dll
 /home/michael/Documents/fiap/MOBILE/trabalho/mobile-devolopment/api/Biblioteca/obj/Debug/netcoreapp3.1/Biblioteca.pdb
 /home/michael/Documents/fiap/MOBILE/trabalho/mobile-devolopment/api/Biblioteca/obj/Debug/netcoreapp3.1/Biblioteca.genruntimeconfig.cache
-/home/michael/Documents/fiap/MOBILE/trabalho/mobile-devolopment/api/Biblioteca/bin/Debug/netcoreapp3.1/Microsoft.OpenApi.dll
-/home/michael/Documents/fiap/MOBILE/trabalho/mobile-devolopment/api/Biblioteca/bin/Debug/netcoreapp3.1/Swashbuckle.AspNetCore.Swagger.dll
-/home/michael/Documents/fiap/MOBILE/trabalho/mobile-devolopment/api/Biblioteca/bin/Debug/netcoreapp3.1/Swashbuckle.AspNetCore.SwaggerGen.dll
-/home/michael/Documents/fiap/MOBILE/trabalho/mobile-devolopment/api/Biblioteca/bin/Debug/netcoreapp3.1/Swashbuckle.AspNetCore.SwaggerUI.dll
-/home/michael/Documents/fiap/MOBILE/trabalho/mobile-devolopment/api/Biblioteca/obj/Debug/netcoreapp3.1/Biblioteca.MvcApplicationPartsAssemblyInfo.cs

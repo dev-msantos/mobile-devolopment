@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Biblioteca</string>
+    <string name="user_name">Nome de Usuário</string>
+    <string name="password">Senha</string>
+    <string name="name">Nome</string>
+    <string name="actor">Autor</string>
+    <string name="title">Título</string>
+    <string name="year">Ano</string>
+    <string name="create_new_account">Criar nova conta</string>
+    <string name="insert_new_book">Inserir novo livro</string>
+    <string name="update_book">Atualizar livro</string>
+    <string name="delete_book">Apagar livro</string>
+    <string name="login">Entrar</string>
+    <string name="confirme_password">Confirme a senha</string>
+    <string name="create_new_book">Criar livro</string>
+    <string name="book_id">Id Livro</string>
+    <string name="title_activity_account">Conta</string>
+</resources>

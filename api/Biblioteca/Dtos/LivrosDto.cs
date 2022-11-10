@@ -6,10 +6,6 @@ namespace Biblioteca.Dtos
     public class LivrosDto
     {
         public List<Livro> Livros { get; }
-
-        public LivrosDto(List<Livro> livros)
-        {
-            Livros = livros;
-        }
+        public LivrosDto(List<Livro> livros) => Livros = livros;        
     }
 }

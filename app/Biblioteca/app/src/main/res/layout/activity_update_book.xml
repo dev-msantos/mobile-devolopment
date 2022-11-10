@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UpdateBookActivity">
+
+    <EditText
+        android:id="@+id/book_id"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/book_id"
+        android:enabled="false"
+        android:layout_margin="60dp"
+        android:inputType="text"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/actor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/actor"
+        android:inputType="text"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="@id/book_id"
+        app:layout_constraintStart_toStartOf="@id/book_id"
+        app:layout_constraintTop_toBottomOf="@id/book_id"/>
+
+    <EditText
+        android:id="@+id/title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/title"
+        android:inputType="text"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="@id/book_id"
+        app:layout_constraintStart_toStartOf="@id/book_id"
+        app:layout_constraintTop_toBottomOf="@id/actor"/>
+
+    <EditText
+        android:id="@+id/year"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/year"
+        android:inputType="number"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="@id/book_id"
+        app:layout_constraintStart_toStartOf="@id/book_id"
+        app:layout_constraintTop_toBottomOf="@id/title"/>
+
+    <Button
+        android:id="@+id/btn_update_book"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/update_book"
+        app:layout_constraintEnd_toEndOf="@id/book_id"
+        app:layout_constraintStart_toStartOf="@id/book_id"
+        app:layout_constraintTop_toBottomOf="@+id/year"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
