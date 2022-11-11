@@ -3,6 +3,7 @@ package br.com.fiap.biblioteca.data.remote
 import br.com.fiap.biblioteca.data.model.FormNovoLivro
 import br.com.fiap.biblioteca.data.model.GenericResponse
 import br.com.fiap.biblioteca.data.model.Livro
+import br.com.fiap.biblioteca.data.model.Livros
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -18,7 +19,7 @@ public interface LivroService {
 
     @Headers("Content-Type: application/json")
     @GET(value="Livro")
-    fun gelAll(): Call<GenericResponse<List<Livro>>>
+    fun gelAll(): Call<GenericResponse<Livros>>
 
     @Headers("Content-Type: application/json")
     @PUT(value="Livro")
